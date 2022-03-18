@@ -1,4 +1,12 @@
+import { useEffect } from 'react';
+import { useFetcher } from 'remix';
+
 export default function Index() {
+  const fetcher = useFetcher();
+  useEffect(() => {
+    if (fetcher.type === 'idle') fetcher.load('/api');
+  }, [fetcher]);
+
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Welcome to Remix</h1>
